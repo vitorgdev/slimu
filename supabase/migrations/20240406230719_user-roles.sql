@@ -1,0 +1,9 @@
+CREATE TABLE user_roles (
+  id SERIAL PRIMARY KEY,
+  auth_user_id UUID NOT NULL,
+  level_id INTEGER NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (auth_user_id) REFERENCES auth.users(id),
+  FOREIGN KEY (level_id) REFERENCES levels(id)
+);

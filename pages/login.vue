@@ -49,7 +49,7 @@ const handleLogin = async (e: Event) => {
       duration: 3000,
       variant: "default",
     });
-    navigateTo("/home");
+    navigateTo("/dashboard");
   }
   loading.value = false;
 };
