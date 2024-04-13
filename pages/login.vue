@@ -14,11 +14,11 @@ import { useToast } from "@/components/ui/toast/use-toast";
 import { Toaster } from "@/components/ui/toast";
 import { ReloadIcon } from "@radix-icons/vue";
 
-const supabaseUrl = "https://rwdajpktqebludtcvhip.supabase.co";
-const supabaseAnonKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ3ZGFqcGt0cWVibHVkdGN2aGlwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTIzODI1NjMsImV4cCI6MjAyNzk1ODU2M30._v5B2j1CORZLbiljRqub5LnWRYHatt6mQkLVQZgBlSs";
+const config = useRuntimeConfig();
 
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabaseUrl = config.public.supabaseUrl;
+const supabaseAnonKey = config.public.supabaseKey;
+const supabase = createClient(supabaseUrl!, supabaseAnonKey!);
 const { toast } = useToast();
 
 const email = ref("");

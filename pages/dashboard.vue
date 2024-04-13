@@ -56,38 +56,51 @@ const invoices = [
 </script>
 
 <template>
-  <div class="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-    <div class="flex items-center justify-between space-y-2">
-      <div>
-        <h2 class="text-2xl font-bold tracking-tight">Welcome back!</h2>
-        <p class="text-muted-foreground">
-          Here&apos;s a list of your tasks for this month!
-        </p>
-      </div>
-      <div class="flex items-center space-x-2"></div>
+  <div class="grid gap-4 lg:grid-cols-3 lg:gap-8">
+    <div class="lg:col-span-3">
+      <Card>
+        <CardHeader>
+          <CardTitle>Detalhes de Usuários</CardTitle>
+          <CardDescription>
+            Listagem de todos os usuários ativos
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div class="grid gap-6">
+            <Table>
+              <TableCaption>Uma lista com todos os usuários.</TableCaption>
+              <TableHeader>
+                <TableRow>
+                  <TableHead class="w-[100px]">Nome</TableHead>
+                  <TableHead>Cargo</TableHead>
+                  <TableHead>Data de contratação</TableHead>
+                  <TableHead class="text-right">Status</TableHead>
+                  <TableHead class="text-right">&nbsp;</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow v-for="invoice in invoices" :key="invoice.invoice">
+                  <TableCell class="font-medium">
+                    {{ invoice.invoice }}
+                  </TableCell>
+                  <TableCell>{{ invoice.paymentStatus }}</TableCell>
+                  <TableCell>{{ invoice.paymentMethod }}</TableCell>
+                  <TableCell class="text-right">
+                    {{ invoice.totalAmount }}
+                  </TableCell>
+
+                  <TableCell class="text-right">
+                    <Button size="sm" variant="outline">Expandir</Button>
+                    <Button class="ml-2 text-red-500" variant="outline"
+                      >Excluir</Button
+                    >
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   </div>
-  <Table>
-    <TableCaption>A list of your recent invoices.</TableCaption>
-    <TableHeader>
-      <TableRow>
-        <TableHead class="w-[100px]"> Invoice </TableHead>
-        <TableHead>Status</TableHead>
-        <TableHead>Method</TableHead>
-        <TableHead class="text-right"> Amount </TableHead>
-      </TableRow>
-    </TableHeader>
-    <TableBody>
-      <TableRow v-for="invoice in invoices" :key="invoice.invoice">
-        <TableCell class="font-medium">
-          {{ invoice.invoice }}
-        </TableCell>
-        <TableCell>{{ invoice.paymentStatus }}</TableCell>
-        <TableCell>{{ invoice.paymentMethod }}</TableCell>
-        <TableCell class="text-right">
-          {{ invoice.totalAmount }}
-        </TableCell>
-      </TableRow>
-    </TableBody>
-  </Table>
 </template>
